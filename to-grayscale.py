@@ -1,7 +1,8 @@
+# From https://stackoverflow.com/questions/19876079/opencv-cannot-find-module-cv2
 import sys
-
 sys.path.append('/usr/local/lib/python2.7/site-packages')
 
+# From http://docs.opencv.org/3.0-beta/doc/py_tutorials/py_gui/py_video_display/py_video_display.html
 import numpy as np
 import cv2
 

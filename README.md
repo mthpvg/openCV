@@ -23,5 +23,7 @@ echo /usr/local/opt/opencv3/lib/python3.6/site-packages >> /usr/local/lib/python
 ## Quickstart
 
 ```bash
-python3 index.py
+python3 to-grayscale.py
+# Or
+python3 movement-detector.py
 ```
