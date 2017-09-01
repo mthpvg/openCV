@@ -7,6 +7,7 @@ import cv2
 
 cascPath = sys.argv[1]
 faceCascade = cv2.CascadeClassifier(cascPath)
+eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
 
 video_capture = cv2.VideoCapture(0)
 
@@ -27,7 +28,13 @@ while True:
 
     # Draw a rectangle around the faces
     for (x, y, w, h) in faces:
-        cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+        img = cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+        # From: http://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_objdetect/py_face_detection/py_face_detection.html
+        roi_gray = gray[y:y+h, x:x+w]
+        roi_color = img[y:y+h, x:x+w]
+        eyes = eye_cascade.detectMultiScale(roi_gray)
+        for (ex,ey,ew,eh) in eyes:
+            cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
 
     # Display the resulting frame
     cv2.imshow('Video', frame)
